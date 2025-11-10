@@ -4,109 +4,47 @@
   <meta charset="utf-8">
   <title>Research — Tommaso De Santo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    /* Simple, consistent styling to match the rest of the site */
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-           margin: 0; padding: 0; line-height: 1.5; color: #222; background: #fff; }
-    .wrap { max-width: 800px; margin: 0 auto; padding: 24px 16px 48px; }
-    header { margin-bottom: 20px; }
-    nav a { margin-right: 12px; text-decoration: none; color: #0366d6; }
-    nav a.active { font-weight: 600; }
-    h1 { font-size: 1.75rem; margin: 0.2rem 0 1.2rem; }
-    hr { border: 0; border-top: 1px solid #ddd; margin: 18px 0 24px; }
-
-    /* Research list */
-    ul.research-list { list-style: disc; margin-left: 1.25rem; padding-left: 0.25rem; }
-    li.research-item { margin-bottom: 1.1rem; }
-    .title { font-weight: 600; }
-    .coauthors { font-style: italic; }
-    .links a { text-decoration: none; color: #0366d6; }
-    details { margin: 0.35rem 0 0.75rem; }
-    summary { cursor: pointer; font-weight: 600; }
-    p { margin: 0.25rem 0 0.75rem; }
-    footer { margin-top: 40px; font-size: 0.9rem; color: #666; }
-    code { background: #f6f8fa; padding: 0 4px; border-radius: 3px; }
-  </style>
+  <!-- Uses the same shared stylesheet as index.html and cv.html -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="cv.html">CV</a>
-        <a class="active" href="research.html">Research</a>
-      </nav>
+
+  <!-- Shared, fixed/sticky header -->
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="index.html">Tommaso De Santo</a>
+      <div class="header-right">
+        <nav class="site-nav">
+          <a href="index.html" id="nav-home">Home</a>
+          <a href="research.html" id="nav-research">Research</a>
+          <a href="cv.html" id="nav-cv">CV</a>
+        </nav>
+        <div class="socials">
+          <a href="mailto:td2248@nyu.edu" aria-label="Email">✉️</a>
+          <a href="https://www.linkedin.com/in/tommaso-de-santo-04191a162/" target="_blank" rel="noopener" aria-label="LinkedIn">🔗</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Active link setter -->
+  <script>
+    (function () {
+      const path = location.pathname.split('/').pop() || 'index.html';
+      const map = { 'index.html': 'nav-home', 'research.html': 'nav-research', 'cv.html': 'nav-cv' };
+      const id = map[path] || 'nav-home';
+      const el = document.getElementById(id);
+      if (el) el.classList.add('active');
+    })();
+  </script>
+
+  <!-- Page content -->
+  <div class="container">
+    <main>
       <h1>Research</h1>
       <hr>
-    </header>
 
-    <main>
-      <ul class="research-list">
-
+      <ul class="research-list" style="list-style: disc; margin-left: 1.25rem; padding-left: 0.25rem;">
         <!-- 1) Fertility, Housing, and Location Decisions -->
-        <li class="research-item">
-          <span class="title">Fertility, Housing, and Location Decisions</span>
-          <span class="coauthors"></span>
-          <span class="links"> — <a href="assets/Slides_AM_Oct8_TommasoFinal.pdf">Slides</a></span>
-          <details>
-            <summary>Abstract</summary>
-            <p>
-              I study the joint decision of fertility and location choice, focusing on housing demand and tenure adjustments.
-              Using PSID and ACS data, I document that new parents often move for housing expansion, accepting real income losses
-              while relocating towards cheaper, lower-wage areas. I complement this with the well-established fact that tenure
-              status (owning versus renting) affects fertility and location decisions.
-            </p>
-            <p>
-              To rationalize these facts, I develop a quantitative spatial equilibrium model of fertility and location decisions
-              with tenure choice. In the model, having children increases housing requirements, intensifying the trade-off households
-              face between housing affordability and local wages or amenities. This interaction drives spatial sorting fertility patterns.
-            </p>
-          </details>
-        </li>
-
-        <!-- 2) Consumption Sorting and Inequality -->
-        <li class="research-item">
-          <span class="title">Consumption Sorting and Inequality</span>
-          <span class="coauthors">
-  (with <a href="https://saveriospinella.github.io/" target="_blank" rel="noopener">Saverio Spinella</a>)
-          </span>
-          <span class="links"> — <a href="assets/CSI.pdf">Slides </a></span>
-          <details>
-            <summary>Abstract</summary>
-            <p>
-
-We develop and quantify a spatial model of product market search with non-homothetic preferences and endogenous firm and household location. The model provides a microfoundation for many empirical regularities we document: given the same barcode-level consumption basket, high-income households, and households with high-income neighbors pay higher prices. Low-income households exert more search effort, visiting more stores and making multiple shopping trips. A higher concentration of retailers facilitates search effort. Our framework allows us to study policies aimed at reducing inequality and the cost of living, capturing the interplay between shopping behavior, consumption segregation externalities, and spatial congestion forces.
-
-            </p>
-          </details>
-        </li>
-
-        <!-- 3) Frictional Rental Markets and Inequality -->
-        <li class="research-item">
-          <span class="title">Frictional Rental Markets and Inequality</span>
-          <span class="coauthors"></span>
-          <span class="links"> — <a href="assets/Frictional_Rental_Markets.pdf">Draft</a></span>
-          <details>
-            <summary>Abstract</summary>
-            <p>
-              Using ACS microdata, I document new facts on the heterogeneity of paid rents across individuals and cities.
-              First, young people tend to pay higher rents and move more frequently, especially in denser and less housing-elastic
-              cities. Second, recent movers—both within and across cities—pay systematically higher rents. These effects are
-              heterogeneous across space and stronger in larger, denser metropolitan areas.
-            </p>
-            <p>
-              To rationalize these patterns, I develop a parsimonious model of directed search in the rental market. The model
-              explains the observed dispersion in paid rents and implies that increases in housing supply would disproportionately
-              benefit younger and more mobile households.
-            </p>
-          </details>
-        </li>
-    </main>
-
-    
-    <footer>
-      © <script>document.write(new Date.getFullYear)</script> Tommaso De Santo
-    </footer>
-  </div>
-</body>
-</html>
+        <li class="research-item" style="margin-bottom: 1.1rem;">
+          <span class="title" style="font-weight: 600;"
