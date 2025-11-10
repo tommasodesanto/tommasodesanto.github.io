@@ -2,95 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CV — Tommaso De Santo</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0; padding: 0;
-      line-height: 1.6;
-      color: #222; background: #fff;
-    }
-    header, footer { width: 100%; }
-    nav a {
-      margin-right: 12px;
-      text-decoration: none;
-      color: #0366d6;
-    }
-    nav a.active { font-weight: 600; }
-    .container {
-      max-width: 950px;
-      margin: 0 auto;
-      padding: 32px 20px 48px;
-    }
-    h1 { font-size: 2rem; margin-bottom: 0.2rem; }
-    hr { border: 0; border-top: 1px solid #ddd; margin: 0.6rem 0 1.4rem; }
-    p { margin: 0.6rem 0 1.2rem; }
-
-    /* Justified text styling */
-    main p {
-      text-align: justify;
-      text-justify: inter-word;
-      hyphens: auto;
-      -webkit-hyphens: auto;
-      -ms-hyphens: auto;
-    }
-
-    .socials a {
-      margin-right: 10px;
-      color: #0366d6;
-      text-decoration: none;
-      font-size: 1.2rem;
-    }
-    .socials a:hover { text-decoration: underline; }
-
-    .button {
-      display: inline-block;
-      background: #0366d6;
-      color: #fff;
-      padding: 10px 16px;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .button:hover { background: #024ea0; }
-
-    footer {
-      margin-top: 40px;
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    @media (max-width: 720px) {
-      .container { text-align: center; }
-      main p { text-align: left; }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <nav>
-        <a href="index.html">Home</a>
-        <a class="active" href="cv.html">CV</a>
-        <a href="research.html">Research</a>
-      </nav>
-      <h1>Tommaso De Santo</h1>
-      <div class="socials">
-        <a href="mailto:td2248@nyu.edu">✉️ Email</a>
-        <a href="https://www.linkedin.com/in/tommaso-de-santo-04191a162/" target="_blank">🔗 LinkedIn</a>
-      </div>
-      <hr>
-    </header>
 
+  <!-- Shared, fixed/sticky header -->
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="index.html">Tommaso De Santo</a>
+      <div class="header-right">
+        <nav class="site-nav">
+          <a href="index.html" id="nav-home">Home</a>
+          <a href="research.html" id="nav-research">Research</a>
+          <a href="cv.html" id="nav-cv">CV</a>
+        </nav>
+        <div class="socials">
+          <a href="mailto:td2248@nyu.edu" aria-label="Email">✉️</a>
+          <a href="https://www.linkedin.com/in/tommaso-de-santo-04191a162/" target="_blank" rel="noopener" aria-label="LinkedIn">🔗</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <script>
+    (function () {
+      const path = location.pathname.split('/').pop() || 'index.html';
+      const map = { 'index.html': 'nav-home', 'research.html': 'nav-research', 'cv.html': 'nav-cv' };
+      const id = map[path] || 'nav-home';
+      const el = document.getElementById(id);
+      if (el) el.classList.add('active');
+    })();
+  </script>
+
+  <!-- Page content -->
+  <div class="container">
     <main>
-      <h2>Curriculum Vitae</h2>
-      <p>
-        You can download my full CV below:
-      </p>
-      <p>
-        <a class="button" href="assets/cv_TommasoDeSanto.pdf" target="_blank">Download CV (PDF)</a>
-      </p>
+      <h1>Curriculum Vitae</h1>
+      <p>You can download my full CV below:</p>
+      <p><a class="button" href="assets/cv_TommasoDeSanto.pdf" target="_blank">Download CV (PDF)</a></p>
     </main>
 
     <footer>
