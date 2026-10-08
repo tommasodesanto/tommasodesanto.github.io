@@ -156,8 +156,8 @@ summary:focus-visible {
 /* --- Home layout --- */
 .home-grid {
   display: grid;
-  grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
-  gap: 54px;
+  grid-template-columns: minmax(170px, 220px) minmax(0, 1fr);
+  gap: 48px;
   align-items: start;
 }
 
@@ -236,6 +236,18 @@ main p,
   font-size: 0.95rem;
 }
 
+.jmp-line {
+  padding-left: 12px;
+  border-left: 2px solid var(--accent);
+}
+
+/* Placeholder link: an <a> without href, until the target exists */
+a:not([href]) {
+  color: var(--muted);
+  text-decoration: none;
+  cursor: default;
+}
+
 /* --- Research page --- */
 .research-list {
   display: grid;
@@ -268,6 +280,16 @@ main p,
   font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
   font-size: 1.13rem;
   line-height: 1.4;
+}
+
+.research-item .jmp-label {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 680;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .research-item .coauthors,
@@ -369,7 +391,7 @@ footer {
   }
 
   .photo {
-    width: min(74vw, 270px);
+    width: min(56vw, 210px);
     margin: 0 auto;
   }
 
@@ -425,7 +447,7 @@ footer {
   }
 
   .photo {
-    width: min(72vw, 245px);
+    width: min(52vw, 190px);
   }
 
   .contact-line {
