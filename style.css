@@ -156,8 +156,8 @@ summary:focus-visible {
 /* --- Home layout --- */
 .home-grid {
   display: grid;
-  grid-template-columns: minmax(170px, 220px) minmax(0, 1fr);
-  gap: 48px;
+  grid-template-columns: minmax(260px, 380px) minmax(0, 1fr);
+  gap: 54px;
   align-items: start;
 }
 
@@ -391,7 +391,7 @@ footer {
   }
 
   .photo {
-    width: min(56vw, 210px);
+    width: min(74vw, 270px);
     margin: 0 auto;
   }
 
@@ -447,7 +447,7 @@ footer {
   }
 
   .photo {
-    width: min(52vw, 190px);
+    width: min(72vw, 245px);
   }
 
   .contact-line {
