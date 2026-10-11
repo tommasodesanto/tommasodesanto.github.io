@@ -1,15 +1,15 @@
 /* --- Design tokens --- */
 :root {
   --maxw: 1040px;
-  --page: #fbfaf7;
+  --page: #ffffff;
   --surface: #ffffff;
-  --surface-soft: #f7f3ef;
-  --text: #272321;
-  --muted: #716965;
-  --accent: #9a4f43;
-  --accent-strong: #70372f;
-  --accent-soft: #f3e7e3;
-  --border: #ddd6d1;
+  --surface-soft: #f3f6f6;
+  --text: #1a2021;
+  --muted: #5a6667;
+  --accent: #0e5a5f;
+  --accent-strong: #093f43;
+  --accent-soft: #e3eff0;
+  --border: #dde5e6;
   --shadow: none;
   --radius: 0;
   --padx: 28px;
@@ -54,7 +54,7 @@ a:hover {
 
 a:focus-visible,
 summary:focus-visible {
-  outline: 3px solid rgba(154, 79, 67, 0.22);
+  outline: 3px solid rgba(14, 90, 95, 0.22);
   outline-offset: 4px;
   border-radius: 3px;
 }
@@ -65,7 +65,7 @@ summary:focus-visible {
   top: 0;
   z-index: 1000;
   width: 100%;
-  background: rgba(251, 250, 247, 0.96);
+  background: rgba(255, 255, 255, 0.96);
   border-bottom: 1px solid var(--border);
   box-shadow: none;
   backdrop-filter: blur(12px);
@@ -325,7 +325,7 @@ a:not([href]) {
 .research-item details p {
   max-width: 78ch;
   margin-bottom: 0.85rem;
-  color: #35434f;
+  color: #2e3a3c;
   font-size: 0.95rem;
   line-height: 1.7;
 }
