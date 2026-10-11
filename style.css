@@ -282,7 +282,8 @@ a:not([href]) {
   line-height: 1.4;
 }
 
-.research-item .jmp-label {
+.research-item .jmp-label,
+.research-item .wip-label {
   display: block;
   margin-bottom: 4px;
   color: var(--accent);
@@ -290,6 +291,10 @@ a:not([href]) {
   font-weight: 680;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+}
+
+.research-item .wip-label {
+  color: var(--muted);
 }
 
 .research-item .coauthors,
