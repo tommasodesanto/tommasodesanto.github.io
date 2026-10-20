@@ -1,28 +1,120 @@
-\documentclass[12pt,letterpaper]{article}
+\documentclass[12pt]{article}
 
 \usepackage[margin=1in]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage{hyperref}
-\hypersetup{colorlinks=true,urlcolor=blue}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\numberwithin{equation}{section}
+\usepackage{booktabs,tabularx,array}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,shapes.geometric,decorations.pathreplacing}
+\definecolor{mechnavy}{RGB}{25,62,96}
+\definecolor{mechteal}{RGB}{27,125,129}
+\definecolor{mechrust}{RGB}{157,77,50}
+\usepackage[round]{natbib}
+\usepackage[expansion=false]{microtype}
+\usepackage{titlesec}
+\usepackage{setspace}
+\usepackage[section]{placeins}
 
-\title{Fertility and Housing Costs}
-\author{Tommaso De Santo\\New York University}
-\date{October 2026\\[0.4em]\small\href{https://tommasodesanto.github.io/jmp.pdf}{Click here for the latest version}}
+% Heading hierarchy: Boar, Gorea and Midrigan, December 2020 working paper,
+% printed pages 8 and 17 (paper_bgm_v1.pdf on Virgiliu Midrigan's website).
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus 0.2ex}{2.3ex plus 0.2ex}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus 0.2ex}{1.5ex plus 0.2ex}
+\titleformat{\subsubsection}[block]
+  {\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus 0.2ex}{1.5ex plus 0.2ex}
+\titleformat{name=\subsubsection,numberless}[runin]
+  {\normalfont\normalsize\bfseries}{}{0pt}{}
+\titlespacing*{name=\subsubsection,numberless}{0pt}{3.25ex plus 1ex minus 0.2ex}{1em}
+\titleformat{\paragraph}[runin]
+  {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus 0.2ex}{1em}
+\usepackage{hyperref}
+
+\graphicspath{{../figures/}{figures/}}
+% October 13, 2026 build: every number is at the 7.9167 production point
+% (output/model/production/2007/PROMOTION_RECEIPT_20261011_7p917.md), the
+% fitted two-shock path psi 0.1460 / 0.1325
+% (output/model/production_runs/2026-10-11_transition_7p917/), and the
+% from-2023 policy transitions in
+% output/model/experiments/transitions_2023/7p9167_v6/table.md. Figures are
+% the tag-free copies used in the Oct 12 deck
+% (latex/JMP_slides/JMP_slides_monday_12_7p9.tex).
+\newcommand{\NT}{../../output/model/experiments/transitions_2023/notag_7p9/output/model/experiments/transitions_2023/7p9167_v6}
+\newcommand{\EXP}{../../output/model/experiments/transitions_2023/7p9167_v6}
+\newcommand{\MECH}{../../output/model/production_runs/2026-10-12_comparison_7p917}
+\newcommand{\TRANS}{../../output/model/production_runs/2026-10-11_transition_7p917/fitted_path_figure}
+% Status of the numbers: shown once on the title page and at the head of the
+% quantitative sections.
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue!50!black
+}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.45em}
+\setlength{\emergencystretch}{3em}
+\onehalfspacing
+\setlength{\abovedisplayskip}{0.9\baselineskip plus 0.25\baselineskip minus 0.15\baselineskip}
+\setlength{\belowdisplayskip}{0.9\baselineskip plus 0.25\baselineskip minus 0.15\baselineskip}
+\setlength{\abovedisplayshortskip}{0.65\baselineskip plus 0.2\baselineskip minus 0.1\baselineskip}
+\setlength{\belowdisplayshortskip}{0.65\baselineskip plus 0.2\baselineskip minus 0.1\baselineskip}
+\setlength{\textfloatsep}{1.1\baselineskip plus 0.25\baselineskip minus 0.2\baselineskip}
+\setlength{\intextsep}{0.9\baselineskip plus 0.2\baselineskip minus 0.15\baselineskip}
+\setlength{\floatsep}{0.9\baselineskip plus 0.2\baselineskip minus 0.15\baselineskip}
+\captionsetup{skip=0.6em}
+\setlist[itemize]{leftmargin=1.3em,itemsep=0.12em,topsep=0.12em}
+\setlist[enumerate]{leftmargin=1.45em,itemsep=0.12em,topsep=0.12em}
+\allowdisplaybreaks
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{remark}{Remark}
+
+\newcommand{\dd}{\mathrm d}
+\newcommand{\E}{\mathbb E}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\problem}[1]{\textcolor{red}{[Problem: #1]}}
+
+\title{Declining Fertility and Housing Costs}
+\author{Tommaso De Santo\thanks{New York University (td2248@nyu.edu). I am grateful to Corina Boar, Guido Menzio, Raquel Fernández and Sharon Traiberman for their guidance and support. I thank David Berger, Jaroslav Borovička, Nicoló Ceneri, Gian Luca Clementi, Simon Gilchrist, Paolo Martellini, Virgiliu
+		Midrigan, Abdoulaye Ndiaye, Alessandra Peter, Diego Perez, Martin Rotemberg, Saverio Spinella, Venky Venkateswaran, and participants to the NYU Macroeconomics Lunch Seminar and NYU Student Macroeconomics Lunch Seminar for their comments and suggestions.}}
+\date{October 19, 2026}
 
 \begin{document}
+
 \maketitle
-
-\begin{center}
-Abstract
-\end{center}
-
-\begingroup
-\small
-\setlength{\parindent}{15pt}
-\setlength{\parskip}{0pt}
-\indent Housing costs are often blamed for low fertility, with proposed remedies ranging from easier mortgage credit to housing supply interventions. I study the potential for policies to raise fertility in a lifecycle model in which households choose whether and when to have children, how much space to occupy, and whether to rent or own. Children increase the need for a bigger house, buying requires a down payment, and earnings are subject to uninsurable idiosyncratic risk. I calibrate the model to the United States in 2007, estimate changes in fertility preferences to match the subsequent decline in birth rates, and treat 2023 as a point on a transition to a smaller population.
-
-First, I show that earnings risk can substantially discourage childbirth: reducing the standard deviation of earnings shocks by about a quarter raises completed fertility by 16 percent, consistent with precautionary behavior and the commitment to ongoing spending on children. I then investigate how earnings risk interacts with housing costs and financial constraints. Starting from the 2023 economy, a 10 percent expansion of housing supply raises completed fertility by about 5 percent for the cohort entering adulthood, with persistent effects for later cohorts. Removing down-payment requirements produces an increase in births of about 2 percent on impact, but has little effect on completed fertility: it mostly affects the timing of births, and encourages ownership of small homes which potentially dissuade further natality. However, the same credit expansion restricted to parents raises completed fertility by about 6 percent. The results highlight the difference between helping households buy a home and helping them sustain the cost of the space children require.
-\endgroup
-
+\begin{abstract}\noindent
+Housing costs are at the center of the public debate on declining fertility.
+Children need space, and young households, who have little savings, find
+family space costly to pay for. In this paper, I study how the cost of family
+space shapes fertility and what housing policy can do about it. I build a
+life-cycle model in which households choose whether to have children,
+whether to rent or own, how much space to occupy and how much to save, under
+uninsurable earnings risk and a down-payment constraint. House prices and
+rents are determined in equilibrium, and births today determine the number of
+households that compete for housing a generation later. I calibrate the model
+to the United States in 2007 and study the transition that follows the
+decline in fertility. Easier access to mortgage credit mostly changes the
+timing of births. Policies that lower the cost of family space in every
+period, such as expanding the housing supply, or that make the commitment a
+child entails safer, such as reducing earnings risk, raise completed
+fertility.
+\end{abstract}
+\vspace*{\fill}
+\pagebreak
 \end{document}
