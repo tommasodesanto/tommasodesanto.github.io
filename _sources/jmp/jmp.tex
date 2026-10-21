@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[11pt]{article}
 
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
@@ -10,69 +10,30 @@
 \usepackage{enumitem}
 \usepackage{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{positioning,arrows.meta,shapes.geometric,decorations.pathreplacing}
-\definecolor{mechnavy}{RGB}{25,62,96}
-\definecolor{mechteal}{RGB}{27,125,129}
-\definecolor{mechrust}{RGB}{157,77,50}
+\usetikzlibrary{positioning,arrows.meta,shapes.geometric}
 \usepackage[round]{natbib}
-\usepackage[expansion=false]{microtype}
-\usepackage{titlesec}
+\usepackage{microtype}
 \usepackage{setspace}
-\usepackage[section]{placeins}
+\onehalfspacing
+\usepackage{titlesec}
 
-% Heading hierarchy: Boar, Gorea and Midrigan, December 2020 working paper,
-% printed pages 8 and 17 (paper_bgm_v1.pdf on Virgiliu Midrigan's website).
-\titleformat{\section}
-  {\normalfont\Large\bfseries}{\thesection}{1em}{}
-\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus 0.2ex}{2.3ex plus 0.2ex}
-\titleformat{\subsection}
-  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
-\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus 0.2ex}{1.5ex plus 0.2ex}
-\titleformat{\subsubsection}[block]
-  {\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
-\titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus 0.2ex}{1.5ex plus 0.2ex}
-\titleformat{name=\subsubsection,numberless}[runin]
-  {\normalfont\normalsize\bfseries}{}{0pt}{}
-\titlespacing*{name=\subsubsection,numberless}{0pt}{3.25ex plus 1ex minus 0.2ex}{1em}
-\titleformat{\paragraph}[runin]
-  {\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
-\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus 0.2ex}{1em}
+% Compact run-in headings within each numbered subsection.
+\titleformat{\subsubsection}[runin]
+  {\normalfont\normalsize\bfseries}{\thesubsubsection}{0.6em}{}
+\titlespacing*{\subsubsection}{0pt}{0.6\baselineskip}{0.6em}
 \usepackage{hyperref}
 
 \graphicspath{{../figures/}{figures/}}
-% October 13, 2026 build: every number is at the 7.9167 production point
-% (output/model/production/2007/PROMOTION_RECEIPT_20261011_7p917.md), the
-% fitted two-shock path psi 0.1460 / 0.1325
-% (output/model/production_runs/2026-10-11_transition_7p917/), and the
-% from-2023 policy transitions in
-% output/model/experiments/transitions_2023/7p9167_v6/table.md. Figures are
-% the tag-free copies used in the Oct 12 deck
-% (latex/JMP_slides/JMP_slides_monday_12_7p9.tex).
-\newcommand{\NT}{../../output/model/experiments/transitions_2023/notag_7p9/output/model/experiments/transitions_2023/7p9167_v6}
-\newcommand{\EXP}{../../output/model/experiments/transitions_2023/7p9167_v6}
-\newcommand{\MECH}{../../output/model/production_runs/2026-10-12_comparison_7p917}
-\newcommand{\TRANS}{../../output/model/production_runs/2026-10-11_transition_7p917/fitted_path_figure}
-% Status of the numbers: shown once on the title page and at the head of the
-% quantitative sections.
 \hypersetup{
   colorlinks=true,
-  linkcolor=blue,
-  citecolor=blue,
+  linkcolor=blue!50!black,
+  citecolor=blue!50!black,
   urlcolor=blue!50!black
 }
 
 \setlength{\parindent}{0em}
 \setlength{\parskip}{0.45em}
 \setlength{\emergencystretch}{3em}
-\onehalfspacing
-\setlength{\abovedisplayskip}{0.9\baselineskip plus 0.25\baselineskip minus 0.15\baselineskip}
-\setlength{\belowdisplayskip}{0.9\baselineskip plus 0.25\baselineskip minus 0.15\baselineskip}
-\setlength{\abovedisplayshortskip}{0.65\baselineskip plus 0.2\baselineskip minus 0.1\baselineskip}
-\setlength{\belowdisplayshortskip}{0.65\baselineskip plus 0.2\baselineskip minus 0.1\baselineskip}
-\setlength{\textfloatsep}{1.1\baselineskip plus 0.25\baselineskip minus 0.2\baselineskip}
-\setlength{\intextsep}{0.9\baselineskip plus 0.2\baselineskip minus 0.15\baselineskip}
-\setlength{\floatsep}{0.9\baselineskip plus 0.2\baselineskip minus 0.15\baselineskip}
-\captionsetup{skip=0.6em}
 \setlist[itemize]{leftmargin=1.3em,itemsep=0.12em,topsep=0.12em}
 \setlist[enumerate]{leftmargin=1.45em,itemsep=0.12em,topsep=0.12em}
 \allowdisplaybreaks
@@ -88,17 +49,17 @@
 \newcommand{\dd}{\mathrm d}
 \newcommand{\E}{\mathbb E}
 \newcommand{\1}{\mathbf 1}
-\newcommand{\problem}[1]{\textcolor{red}{[Problem: #1]}}
 
 \title{Declining Fertility and Housing Costs}
 \author{Tommaso De Santo\thanks{New York University (td2248@nyu.edu). I am grateful to Corina Boar, Guido Menzio, Raquel Fernández and Sharon Traiberman for their guidance and support. I thank David Berger, Jaroslav Borovička, Nicoló Ceneri, Gian Luca Clementi, Simon Gilchrist, Paolo Martellini, Virgiliu
 		Midrigan, Abdoulaye Ndiaye, Alessandra Peter, Diego Perez, Martin Rotemberg, Saverio Spinella, Venky Venkateswaran, and participants to the NYU Macroeconomics Lunch Seminar and NYU Student Macroeconomics Lunch Seminar for their comments and suggestions.}}
-\date{October 19, 2026}
+\date{October 19, 2026\\[0.4em]\small\href{https://tommasodesanto.github.io/jmp.pdf}{Click here for the latest version}}
 
 \begin{document}
 
 \maketitle
-\begin{abstract}\noindent
+\begin{abstract}
+\noindent
 I study how the cost of family space shapes fertility and what housing
 policy can do about it. Housing costs are at the center of the public debate
 on declining fertility: children need space, and young households, who have
@@ -116,6 +77,7 @@ the larger homes a child requires, but it does little for births. Policies
 that change long-term incentives, such as more housing supply and credit for
 parents, raise fertility, and their effects build up over a generation.
 Housing policy must therefore be judged by its long-run effects.
+
 \end{abstract}
 \vspace*{\fill}
 \pagebreak
